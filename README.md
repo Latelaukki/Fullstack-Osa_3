@@ -14,12 +14,10 @@ Fullstack kurssin osa 3 tehtävät
 <br> 
 `npm init`
 <br>
-
 * Serverin ajaminen Nodemonilla: 
 <br>
 `npm run dev`
 <br>
-
 * Serverin ajaminen normaalisti:
 <br>
 `npm start`
