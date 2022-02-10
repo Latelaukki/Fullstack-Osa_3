@@ -1,7 +1,13 @@
 const express = require('express') // sisäänrakennettu web-palvelin
+const morgan = require('morgan')
 const app = express()
 
 app.use(express.json()) // request.body määritellään
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
+
+morgan.token('body', function getBody (req) {
+  return JSON.stringify(req.body)
+})
 
 let persons = [
   {
@@ -26,38 +32,69 @@ let persons = [
   }
 ]
 
-app.get('/', (req, res) => {
-  res.send('<h1>Persons!</h1>')
+app.get('/info', (req, res) => {
+  const date = new Date()
+  res.send(`Phonebook has info for ${persons.length} people <p> ${date}`)
 })
 
 app.get('/api/persons', (req, res) => {
   res.json(persons)
 })
 
-// app.get('/api/notes/:id', (request, response) => {
-//   const id = Number(request.params.id) // id integer muotoon
-//   const note = notes.find(note => note.id === id)
+app.get('/api/persons/:id', (request, response) => {
+  const id = Number(request.params.id) // id integer muotoon
+  const person = persons.find(person => person.id === id)
   
-//   if (note) {
-//     response.json(note)
-//   } else {
-//     response.status(404).end()
-//   }
-// })
+  if (person) {
+    response.json(person)
+  } else {
+    response.status(404).end()
+  }
+})
 
-// app.post('/api/notes', (request, response) => {
-//   console.log(request.headers)
-//   const note = request.body
-//   console.log(note)
-//   response.json(note)
-// })
+const generateId = () => {
+  const max = 9999
+  return Math.floor(Math.random() * max)
+}
 
-// app.delete('/api/notes/:id', (request, response) => {
-//   const id = Number(request.params.id)
-//   notes = notes.filter(note => note.id !== id)
+app.post('/api/persons', (request, response) => {
+  const body = request.body
 
-//   response.status(204).end()
-// })
+  if (!body.name) {
+    return response.status(400).json({ 
+      error: 'name missing' 
+    })
+  }
+
+  if (!body.number) {
+    return response.status(400).json({ 
+      error: 'number missing' 
+    })
+  }
+  
+  if (persons.find(person => { return person.name === body.name })) {
+    return response.status(400).json({ 
+      error: 'name must be unique' 
+    })
+  }
+
+  const person = {
+    name: body.name,
+    number: body.number,
+    id: generateId(),
+  }
+
+  persons = persons.concat(person)
+
+  response.json(person)
+})
+
+app.delete('/api/persons/:id', (request, response) => {
+  const id = Number(request.params.id)
+  persons = persons.filter(person => person.id !== id)
+
+  response.status(204).end()
+})
 
 const PORT = 3001
 app.listen(PORT, () => {
