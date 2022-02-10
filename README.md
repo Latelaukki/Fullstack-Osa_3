@@ -8,6 +8,14 @@ Fullstack kurssin osa 3 tehtävät
 
 ## Komentoja
 
-* Serverin ajaminen Nodemonilla:
+Backendin luonti ilman Reactia:
+
+`npm init`
+
+Serverin ajaminen Nodemonilla:
 
 `npm run dev`
+
+Serverin ajaminen normaalisti
+
+`npm start`
