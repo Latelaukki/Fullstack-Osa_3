@@ -1,0 +1,27 @@
+{
+  "name": "fullstack-osa_3",
+  "version": "1.0.0",
+  "description": "Fullstack kurssin osa 3 tehtävät",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Latelaukki/Fullstack-Osa_3.git"
+  },
+  "author": "Lauri Aaltonen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Latelaukki/Fullstack-Osa_3/issues"
+  },
+  "homepage": "https://github.com/Latelaukki/Fullstack-Osa_3#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
