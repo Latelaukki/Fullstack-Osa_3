@@ -3,9 +3,10 @@
 Fullstack kurssin osa 3 tehtävät
 
 ## Muistiinpanoja
-
+<br>
 * Nodemon päivittää serverin muutokset 
-
+<br>
+<br>
 ## Komentoja
 
 Backendin luonti ilman Reactia:
