@@ -1,9 +1,12 @@
 const express = require('express') // sisäänrakennettu web-palvelin
 const morgan = require('morgan')
 const app = express()
+const cors = require('cors')
 
 app.use(express.json()) // request.body määritellään
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
+app.use(cors())
+app.use(express.static('build'))
 
 morgan.token('body', function getBody (req) {
   return JSON.stringify(req.body)
@@ -31,11 +34,6 @@ let persons = [
     number: "39-23-6423122"
   }
 ]
-
-app.get('/info', (req, res) => {
-  const date = new Date()
-  res.send(`Phonebook has info for ${persons.length} people <p> ${date}`)
-})
 
 app.get('/api/persons', (req, res) => {
   res.json(persons)
@@ -96,7 +94,7 @@ app.delete('/api/persons/:id', (request, response) => {
   response.status(204).end()
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
