@@ -2,6 +2,8 @@
 
 Heroku App: https://secret-caverns-96758.herokuapp.com/
 
+Aiemmat osat: https://github.com/Latelaukki/Fullstack-websovelluskehitys-kurssi
+
 Fullstack kurssin osa 3 tehtävät
 
 ## Muistiinpanoja
