@@ -13,3 +13,5 @@ Backendin luonti ilman Reactia `npm init`
 Serverin ajaminen Nodemonilla `npm run dev`
 
 Serverin ajaminen normaalisti `npm start`
+
+Noden debuggaus Chromessa `node --inspect index.js`
