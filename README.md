@@ -20,4 +20,3 @@ Serverin ajaminen normaalisti `npm start`
 
 Noden debuggaus Chromessa `node --inspect index.js`
 
-Testi
